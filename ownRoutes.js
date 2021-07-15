@@ -6,15 +6,25 @@ module.exports = function (app) {
     });
     app.get('/api/:input', (req, res) => {
         const { input } = req.params;
+        let unix, newDate, resObj;
         if (input.includes("-")) {
-            const unix = Date.parse(input)
-            const newDate = new Date(unix).toUTCString()
-            return res.json({
+            unix = Date.parse(input)
+            newDate = new Date(unix).toUTCString()
+            resObj = {
                 unix: unix,
                 utf: newDate
-            })
+            }
+        } else {
+            unix = parseInt(input);
+            newDate = new Date(unix).toUTCString();
+            resObj = {
+                unix: unix,
+                utf: newDate
+            }
         }
-        res.send("que rompimo")
+        !unix || !newDate ? res.json({
+            error: "Invalid Date"
+        }) : res.json(resObj)
     })
     //other routes..
 }

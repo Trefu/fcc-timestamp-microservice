@@ -6,9 +6,6 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true
 });
 
-
-
-
 const personSchema = new Schema({
   name: { type: String, required: true },
   age: Number,

@@ -15,6 +15,8 @@ const fs = require("fs");
 const path = require("path");
 const bodyParser = require("body-parser");
 const router = express.Router();
+//trefu routes
+require('./ownRoutes')(app);
 
 const enableCORS = function (req, res, next) {
   if (!process.env.DISABLE_XORIGIN) {
